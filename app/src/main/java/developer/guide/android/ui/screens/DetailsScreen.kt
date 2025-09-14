@@ -97,6 +97,7 @@ fun DetailsScreen(sectionId: Int, navController: NavController) {
                             .padding(horizontal = 16.dp)
                             .verticalScroll(rememberScrollState())
                     ) {
+
                         Markdown(
                             content = content.orEmpty(),
                             modifier = Modifier.padding(vertical = 8.dp)
