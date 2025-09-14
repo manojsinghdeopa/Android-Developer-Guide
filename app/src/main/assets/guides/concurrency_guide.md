@@ -49,7 +49,7 @@ to run concurrently.
 
 * **`suspend` functions:** These are special functions that can be paused (suspended) and resumed
   later. They can only be called from other `suspend` functions or within a coroutine.
-  ```kotlin
+  ```
   suspend fun fetchData(): String {
       delay(1000L) // Simulate network delay (suspending function)
       return "Data fetched"
@@ -59,7 +59,7 @@ to run concurrently.
     * `launch`: Starts a new coroutine that "fires and forgets" – it doesn't return a result to the
       caller. Used for tasks like updating UI or making a simple network call without expecting an
       immediate result.
-      ```kotlin
+      ```
       viewModelScope.launch {
           val data = fetchData()
           // Update UI with data
@@ -68,7 +68,7 @@ to run concurrently.
     * `async`: Starts a new coroutine that computes a result and returns a `Deferred<T>`. You can
       then call `await()` on the `Deferred` object to get the result (suspending until the result is
       available). Used when you need to perform an asynchronous operation and get its result back.
-      ```kotlin
+      ```
       viewModelScope.launch {
           val deferredData: Deferred<String> = async {
               fetchDataFromServer()
@@ -90,7 +90,7 @@ to run concurrently.
       thread the suspending function used. Use with caution.
 
   You can switch dispatchers using `withContext`:
-  ```kotlin
+  ```
   suspend fun processData(): String {
       val rawData = withContext(Dispatchers.IO) {
           // Perform network or disk operation
@@ -139,7 +139,7 @@ called on the flow.
 ### Creating Flows
 
 * **`flow {}` builder:** The most common way to create a flow.
-  ```kotlin
+  ```
   fun countNumbers(limit: Int): Flow<Int> = flow {
       for (i in 1..limit) {
           delay(100L) // Simulate some work
@@ -149,11 +149,11 @@ called on the flow.
   ```
 * **`.asFlow()` extension functions:** Convert various types (e.g., `List`, `Iterable`, `Array`,
   `Sequence`) into flows.
-  ```kotlin
+  ```
   val numberFlow = (1..5).asFlow()
   ```
 * **`flowOf(...)`:** Creates a flow that emits a fixed set of values.
-  ```kotlin
+  ```
   val fixedFlow = flowOf("A", "B", "C")
   ```
 
@@ -163,7 +163,7 @@ To get the values from a flow, you use a **terminal operator**. The most common 
 `collect` is a suspending function, so it must be called from a coroutine or another `suspend`
 function.
 
-```kotlin
+```
 viewModelScope.launch {
     countNumbers(5).collect { number ->
         Log.d("FlowExample", "Collected: $number")
@@ -178,26 +178,26 @@ intermediate, meaning they return a new Flow and don't trigger the flow executio
 
 * **Transformation Operators:**
     * `map`: Transforms each emitted value.
-      ```kotlin
+      ```
       usersFlow.map { user -> user.name.uppercase() }
       ```
     * `transform`: More generic transformation, can emit multiple values or skip some.
 * **Filtering Operators:**
     * `filter`: Emits only values that satisfy a predicate.
-      ```kotlin
+      ```
       numberFlow.filter { it % 2 == 0 } // Emit only even numbers
       ```
     * `take`: Takes only the first N emissions.
 * **Combining Operators:**
     * `zip`: Combines emissions from two flows. Emits when both flows have emitted a new value.
-      ```kotlin
+      ```
       val flowA = flowOf(1, 2)
       val flowB = flowOf("A", "B", "C")
       flowA.zip(flowB) { num, char -> "$num$char" } // Emits "1A", "2B"
       ```
     * `combine`: Combines the latest values from multiple flows. Emits whenever any of the source
       flows emit a new value (once all have emitted at least one).
-      ```kotlin
+      ```
       flowA.combine(flowB) { num, char -> "$num$char" }
       // Example emissions: (if A emits 1, B emits 'X') -> "1X"
       // (if A then emits 2) -> "2X"
@@ -210,7 +210,7 @@ intermediate, meaning they return a new Flow and don't trigger the flow executio
 * **Context and Dispatchers:**
     * `flowOn(Dispatcher)`: Changes the dispatcher for the upstream operations (the flow builder and
       preceding operators).
-      ```kotlin
+      ```
       fun dataFromNetwork(): Flow<String> = flow {
           // This runs on Dispatchers.IO
           emit(api.fetchData())
@@ -220,7 +220,7 @@ intermediate, meaning they return a new Flow and don't trigger the flow executio
 ### Error Handling
 
 * **`catch` operator:** Catches exceptions from the upstream flow.
-  ```kotlin
+  ```
   dataFromNetwork()
       .catch { e ->
           Log.e("FlowError", "Error fetching data: ${e.message}")
@@ -260,7 +260,7 @@ operators can change this behavior.
 
 * **`LiveData`:**
     * `liveData` builder: A coroutine builder that produces `LiveData`.
-  ```kotlin
+  ```
   val userData: LiveData<User> = liveData(Dispatchers.IO) {
       emit(repository.fetchUser())
   }
@@ -268,7 +268,7 @@ operators can change this behavior.
     * `.asLiveData()`: Converts a Flow to LiveData.
 * **`StateFlow`:** A hot flow that holds a single, updatable value (state). Ideal for representing
   UI state.
-  ```kotlin
+  ```
   // In ViewModel
   private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
   val uiState: StateFlow<UiState> = _uiState.asStateFlow()
@@ -287,7 +287,7 @@ operators can change this behavior.
   ```
   In your Activity/Fragment, collect `StateFlow` using `lifecycleScope` and `collectLatest` or
   `repeatOnLifecycle`:
-  ```kotlin
+  ```
   // In Fragment's onViewCreated
   viewLifecycleOwner.lifecycleScope.launch {
       viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -299,7 +299,7 @@ operators can change this behavior.
   ```
 * **`SharedFlow`:** A hot flow for broadcasting values to multiple collectors. Useful for one-time
   events.
-  ```kotlin
+  ```
   // In ViewModel
   private val _events = MutableSharedFlow<Event>()
   val events: SharedFlow<Event> = _events.asSharedFlow()
@@ -315,7 +315,7 @@ operators can change this behavior.
 
 Coroutines and Flow are excellent for these tasks.
 
-```kotlin
+```
 // Repository
 class UserRepository(private val userDao: UserDao, private val apiService: ApiService) {
     fun getUserData(userId: String): Flow<Resource<User>> = flow {
@@ -368,7 +368,7 @@ class UserRepository(private val userDao: UserDao, private val apiService: ApiSe
 
 ### Example 1: Simple Background Task with `launch`
 
-```kotlin
+```
 // In an Activity or Fragment
 lifecycleScope.launch {
     Log.d("CoroutineExample", "Starting background task...")
@@ -388,7 +388,7 @@ ensure UI updates are wrapped in `withContext(Dispatchers.Main)`. Most commonly,
 
 ### Example 2: Fetching Data with `async` and `await`
 
-```kotlin
+```
 // In a ViewModel
 fun fetchTwoThings() {
     viewModelScope.launch {
@@ -409,7 +409,7 @@ fun fetchTwoThings() {
 
 ### Example 3: Using Flow to Observe Database Changes (Room example)
 
-```kotlin
+```
 // In DAO (Data Access Object) with Room
 @Dao
 interface ItemDao {
@@ -437,7 +437,7 @@ fun addItem(name: String) {
 
 ### Example 4: Combining Multiple Flow Sources
 
-```kotlin
+```
 // In ViewModel
 val queryFlow = MutableStateFlow("")
 val sortOrderFlow = MutableStateFlow(SortOrder.ASCENDING)

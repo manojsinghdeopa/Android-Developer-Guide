@@ -15,7 +15,7 @@ memory leaks in your app during development.
 **Setup:**
 
 1. Add the LeakCanary dependency to your `build.gradle` file:
-   ```gradle
+   ```
    dependencies {
      debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.x' // Replace 2.x with the latest version
    }
@@ -55,7 +55,7 @@ Coil and Glide are popular image loading libraries for Android that provide feat
 
 **Coil Example:**
 
-```kotlin
+```
 // In your ImageView
 imageView.load("https://example.com/image.jpg") {
     crossfade(true)
@@ -69,7 +69,7 @@ imageView.load("https://example.com/image.jpg") {
 
 **Glide Example:**
 
-```kotlin
+```
 Glide.with(context)
     .load("https://example.com/image.jpg")
     .placeholder(R.drawable.placeholder)
@@ -119,7 +119,7 @@ High CPU usage can lead to poor performance, battery drain, and a sluggish user 
 
 * **Offload Work from the Main Thread:** Use Kotlin Coroutines, RxJava, `AsyncTask` (deprecated but
   still seen in older code), or `Executors` to move long-running operations to background threads.
-  ```kotlin
+  ```
   // Using Kotlin Coroutines
   viewModelScope.launch(Dispatchers.IO) {
       val result = performExpensiveOperation()

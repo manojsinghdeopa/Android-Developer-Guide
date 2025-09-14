@@ -42,7 +42,7 @@ you describe your UI by calling Composable functions that transform data into a 
 
 **Example:**
 
-```kotlin
+```
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -90,7 +90,7 @@ Fragment-based navigation, it now fully supports Jetpack Compose.
 
 **Example:**
 
-```kotlin
+```
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable

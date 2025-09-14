@@ -12,6 +12,7 @@ import developer.guide.android.ui.screens.AppNavigation
 import developer.guide.android.ui.theme.AndroidDeveloperGuideTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

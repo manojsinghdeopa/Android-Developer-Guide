@@ -28,7 +28,7 @@ provides a concise and readable API for UI testing, focusing on three main compo
 
 To use Espresso, you need to add the following dependencies to your app's `build.gradle` file:
 
-```gradle
+```
 android {
     defaultConfig {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -50,7 +50,7 @@ dependencies {
 Espresso tests are typically written in Kotlin (or Java) and reside in the `androidTest` directory
 of your module.
 
-```kotlin
+```
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
@@ -134,7 +134,7 @@ and properties.
 
 Add the following dependencies to your app's `build.gradle` file:
 
-```gradle
+```
 dependencies {
     // Core Compose testing
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.6.0" // Check for latest version
@@ -148,7 +148,7 @@ dependencies {
 
 Compose tests also reside in the `androidTest` directory. They use a `ComposeTestRule`.
 
-```kotlin
+```
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -219,7 +219,7 @@ class MyComposeScreenTest {
 * **Test Tags:** Use `Modifier.testTag("yourTestTag")` to assign a unique identifier to your
   composables. This makes them easier and more reliable to find in tests.
 
-```kotlin
+```
 // In your Composable function
 Button(
     onClick = { /* ... */ },

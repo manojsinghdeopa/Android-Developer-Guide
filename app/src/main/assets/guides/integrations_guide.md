@@ -16,12 +16,12 @@ and data.
 - **Setup**:
     1. Get an API key from the Google Cloud Console.
     2. Add the Google Play services SDK to your `build.gradle` file:
-       ```gradle
+       ```
        implementation 'com.google.android.gms:play-services-maps:18.2.0' 
        // Check for the latest version
        ```
     3. Add your API key to the `AndroidManifest.xml`:
-       ```xml
+       ```
        <application>
            ...
            <meta-data
@@ -60,7 +60,7 @@ tools and services.
        directory (e.g., `app/`).
     4. Add the Firebase Bill of Materials (BOM) and relevant SDK dependencies to your `build.gradle`
        file:
-       ```gradle
+       ```
        // For app-level build.gradle
        dependencies {
          // Import the BoM for the Firebase platform
@@ -76,11 +76,11 @@ tools and services.
        ```
     5. Apply the Google services plugin in your module-level `build.gradle` file (usually at the
        bottom):
-       ```gradle
+       ```
        apply plugin: 'com.google.gms.google-services'
        ```
     6. Ensure the Google services plugin is added to your project-level `build.gradle` file:
-       ```gradle
+       ```
        // For project-level build.gradle
        buildscript {
            dependencies {
@@ -117,12 +117,12 @@ tools and services.
 - **Setup (FCM)**:
     1. Follow the Firebase setup steps mentioned earlier.
     2. Add the FCM dependency:
-       ```gradle
+       ```
        implementation("com.google.firebase:firebase-messaging-ktx")
        ```
     3. Create a service that extends `FirebaseMessagingService` to handle incoming messages and
        token registration.
-       ```kotlin
+       ```
        class MyFirebaseMessagingService : FirebaseMessagingService() {
            override fun onMessageReceived(remoteMessage: RemoteMessage) {
                // Handle FCM messages here.
@@ -135,7 +135,7 @@ tools and services.
        }
        ```
     4. Declare the service in `AndroidManifest.xml`:
-       ```xml
+       ```
        <service
            android:name=".MyFirebaseMessagingService"
            android:exported="false">
@@ -168,7 +168,7 @@ functionalities.
     1. Choose an analytics provider.
     2. Sign up and get an API key or app ID.
     3. Add the SDK dependency to your `build.gradle`.
-       ```gradle
+       ```
        // Example for Google Analytics for Firebase
        implementation("com.google.firebase:firebase-analytics-ktx")
        ```
@@ -192,13 +192,13 @@ functionalities.
     1. Create an account with an ad network.
     2. Register your app and get an App ID / Ad Unit IDs.
     3. Add the SDK dependency.
-       ```gradle
+       ```
        // Example for Google AdMob
        implementation 'com.google.android.gms:play-services-ads:23.1.0' // Check for latest version
        ```
     4. Initialize the SDK in your `Application` class and configure your App ID in
        `AndroidManifest.xml`.
-       ```xml
+       ```
        <application>
            ...
            <meta-data
@@ -226,7 +226,7 @@ functionalities.
     1. Choose a crash reporting tool.
     2. Sign up and get an API key.
     3. Add the SDK dependency and any required plugins.
-       ```gradle
+       ```
        // Example for Firebase Crashlytics
        // In your app-level build.gradle
        dependencies {

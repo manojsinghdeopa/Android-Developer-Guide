@@ -42,7 +42,7 @@ that shrink, obfuscate, and optimize your code.
 In your module-level `build.gradle` (or `build.gradle.kts`) file, ensure `minifyEnabled` is set to
 `true` for your release build type:
 
-```groovy
+```
 android {
     // ...
     buildTypes {
@@ -85,7 +85,7 @@ no longer referenced.
 In your module-level `build.gradle` (or `build.gradle.kts`) file, set `shrinkResources` to `true`
 for your release build type. This property only works if `minifyEnabled` is also `true`.
 
-```groovy
+```
 android {
     // ...
     buildTypes {
@@ -118,7 +118,7 @@ android {
 
 **Example `keep.xml`:**
 
-```xml
+```
 <?xml version="1.0"encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:keep="@layout/used_layout,@drawable/used_icon"

@@ -24,7 +24,7 @@ and write code that works consistently across Android versions and devices.
   configuration changes.
 * **Key components**: `ViewModel`, `LiveData`, `LifecycleObserver`.
 * **Gradle Dependency (example)**:
-   ```gradle
+   ```
    // ViewModel
    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
    // LiveData
@@ -41,7 +41,7 @@ and write code that works consistently across Android versions and devices.
   like deep links and argument passing.
 * **Key components**: `NavController`, Navigation graph (XML or Kotlin DSL).
 * **Gradle Dependency (example)**:
-   ```gradle
+   ```
    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
    ```
@@ -51,7 +51,7 @@ and write code that works consistently across Android versions and devices.
 * **Purpose**: Android’s modern toolkit for building native UI. It simplifies and accelerates UI
   development on Android with less code, powerful tools, and intuitive Kotlin APIs.
 * **Gradle Dependency (example - BOM recommended)**:
-   ```gradle
+   ```
    // Define Compose BOM (Bill of Materials) in your root build.gradle or libs.versions.toml
    // implementation(platform("androidx.compose:compose-bom:2024.05.00")) // Check for latest version
 
@@ -67,7 +67,7 @@ and write code that works consistently across Android versions and devices.
   more robust database access while harnessing the full power of SQLite.
 * **Key components**: `Entity`, `DAO` (Data Access Object), `Database`.
 * **Gradle Dependency (example)**:
-   ```gradle
+   ```
    implementation("androidx.room:room-runtime:2.6.1")
    kapt("androidx.room:room-compiler:2.6.1") // or annotationProcessor for Java
    // Optional - Kotlin Extensions and Coroutines support for Room
@@ -80,7 +80,7 @@ and write code that works consistently across Android versions and devices.
   manual dependency injection in your project. Built on top of Dagger.
 * **Key components**: `@HiltAndroidApp`, `@AndroidEntryPoint`, `@Inject`, `@Module`, `@Provides`.
 * **Gradle Dependency (example)**:
-   ```gradle
+   ```
    implementation("com.google.dagger:hilt-android:2.51.1")
    kapt("com.google.dagger:hilt-compiler:2.51.1")
    // For Hilt Navigation Compose
@@ -95,7 +95,7 @@ and write code that works consistently across Android versions and devices.
   or the device restarts. Ideal for background work.
 * **Key components**: `Worker`, `WorkRequest`, `WorkManager`.
 * **Gradle Dependency (example)**:
-   ```gradle
+   ```
    implementation("androidx.work:work-runtime-ktx:2.9.0")
    ```
 
@@ -108,7 +108,7 @@ These are popular and widely adopted libraries from the Android community.
 * **Purpose**: A type-safe HTTP client for Android and Java by Square. Makes it easy to consume JSON
   or XML data which is parsed into Plain Old Java Objects (POJOs).
 * **Gradle Dependency (example)**:
-   ```gradle
+   ```
    implementation("com.squareup.retrofit2:retrofit:2.11.0")
    // Converters for JSON (Gson or Moshi are common)
    implementation("com.squareup.retrofit2:converter-gson:2.11.0") // or converter-moshi
@@ -119,7 +119,7 @@ These are popular and widely adopted libraries from the Android community.
 * **Purpose**: An efficient HTTP client for Android and Java. Retrofit uses OkHttp by default for
   network requests. It supports HTTP/2, connection pooling, GZIP, and response caching.
 * **Gradle Dependency (example - often included by Retrofit, but can be used standalone)**:
-   ```gradle
+   ```
    implementation("com.squareup.okhttp3:okhttp:4.12.0")
    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0") // For logging requests/responses
    ```
@@ -129,12 +129,12 @@ These are popular and widely adopted libraries from the Android community.
 * **Purpose**: Image loading libraries for Android. They handle caching, transformations, and
   loading images from various sources (network, local files, resources).
 * **Coil (Kotlin Coroutines based)**:
-   ```gradle
+   ```
    implementation("io.coil-kt:coil-compose:2.6.0") // For Compose
    implementation("io.coil-kt:coil:2.6.0")        // For Views
    ```
 * **Glide**:
-   ```gradle
+   ```
    implementation("com.github.bumptech.glide:glide:4.16.0")
    kapt("com.github.bumptech.glide:compiler:4.16.0") // or annotationProcessor for Java
    ```
@@ -144,7 +144,7 @@ These are popular and widely adopted libraries from the Android community.
 * **Purpose**: For asynchronous programming in Kotlin. Coroutines simplify background tasks, and
   Flow provides a stream of data that can be collected asynchronously.
 * **Gradle Dependency (example)**:
-   ```gradle
+   ```
    // Core Coroutines
    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3") // Check for latest
    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

@@ -38,7 +38,7 @@ WorkManager is an Android Jetpack library that makes it easy to schedule deferra
     *   The `doWork()` method (or `doWork()` in `CoroutineWorker`) is where you implement your task logic.
     *   It returns a `Result` (`Result.success()`, `Result.failure()`, or `Result.retry()`).
 
-    ```kotlin
+    ```
     // Example using CoroutineWorker
     class MyUploadWorker(appContext: Context, workerParams: WorkerParameters) :
         CoroutineWorker(appContext, workerParams) {
@@ -63,7 +63,7 @@ WorkManager is an Android Jetpack library that makes it easy to schedule deferra
     *   **`OneTimeWorkRequest`**: For a single, non-repeating task.
     *   **`PeriodicWorkRequest`**: For tasks that need to run repeatedly at a specified interval (minimum interval is 15 minutes).
 
-    ```kotlin
+    ```
     // One-time work request
     val uploadWorkRequest = OneTimeWorkRequestBuilder<MyUploadWorker>()
         .setInputData(workDataOf("IMAGE_URI" to "content://path/to/image.jpg"))
@@ -83,7 +83,7 @@ WorkManager is an Android Jetpack library that makes it easy to schedule deferra
 4.  **`WorkManager` Instance**:
     *   Used to enqueue and manage `WorkRequest`s.
     *   Get an instance using `WorkManager.getInstance(context)`.
-    ```kotlin
+    ```
     WorkManager.getInstance(applicationContext).enqueue(uploadWorkRequest)
 
     // Enqueue unique work to prevent duplicates
@@ -93,7 +93,7 @@ WorkManager is an Android Jetpack library that makes it easy to schedule deferra
 ### Observing Work Status:
 
 You can observe the status of your work using `LiveData` or Kotlin `Flow`.
-```kotlin
+```
 // Using LiveData
 WorkManager.getInstance(applicationContext)
     .getWorkInfoByIdLiveData(uploadWorkRequest.id)
@@ -118,7 +118,7 @@ lifecycleScope.launch {
 ### Chaining Work:
 
 WorkManager allows you to create chains of dependent tasks.
-```kotlin
+```
 val compressWork = OneTimeWorkRequestBuilder<CompressWorker>().build()
 val uploadWork = OneTimeWorkRequestBuilder<MyUploadWorker>().build() // Defined earlier
 val cleanupWork = OneTimeWorkRequestBuilder<CleanupWorker>().build()
@@ -136,7 +136,7 @@ For tasks that are important and need to run relatively quickly, but can still b
 *   Uses `setExpedited(OutOfQuotaPolicy)` on a `OneTimeWorkRequest`.
 *   The system may still defer the work if the system is under heavy load or lacks quota.
 *   Requires a foreground service if the work starts while the app is in the foreground and the task is long-running. WorkManager can manage this for you.
-```kotlin
+```
 val expeditedWorkRequest = OneTimeWorkRequestBuilder<MyImportantTaskWorker>()
     .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST) // Fallback policy
     .build()
@@ -166,7 +166,7 @@ Foreground services perform operations that are noticeable to the user and must 
 
 1.  **Extend `Service`**: Create a class that extends `android.app.Service`.
 2.  **Declare in Manifest**:
-    ```xml
+    ```
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <!-- For Android 14+, specify foreground service type -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
@@ -181,7 +181,7 @@ Foreground services perform operations that are noticeable to the user and must 
     *   Call `ContextCompat.startForegroundService(context, intent)` (or `startForegroundService()` on API 26+). This signals intent to run as foreground.
 4.  **Promote to Foreground**:
     *   Within **5 seconds** of the service starting (or after `Context.startForegroundService()` is called), the service must call its `startForeground(notificationId, notification)` method. Failure to do so will result in an ANR.
-```kotlin
+```
     class MyMediaPlayerService : Service() {
 
         private val NOTIFICATION_ID = 1

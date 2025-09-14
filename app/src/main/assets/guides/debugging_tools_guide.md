@@ -69,7 +69,7 @@ You can access Logcat by selecting **View > Tool Windows > Logcat**.
     *   **Log level dropdown**: Show messages at or above a selected severity.
     *   **"Show only selected application"**: Focus on logs from your debugged app process.
 *   **Logging in Your Code**: Use the `android.util.Log` class to add log messages from your app:
-    ```kotlin
+    ```
     import android.util.Log
 
     // Inside your class

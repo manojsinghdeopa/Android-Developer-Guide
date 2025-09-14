@@ -14,7 +14,7 @@
 2.  **Project Structure (`build.gradle.kts`):**
     *   The `build.gradle.kts` file (usually found in the `app` module and the project root) is where you manage project dependencies and build configurations.
     *   **Dependencies:** To add libraries, use the `dependencies` block in your module-level `build.gradle.kts` file. For example:
-        ```kotlin
+        ```
         dependencies {
             implementation("androidx.core:core-ktx:1.9.0") // Example dependency
             implementation("com.google.android.material:material:1.10.0") // Example dependency

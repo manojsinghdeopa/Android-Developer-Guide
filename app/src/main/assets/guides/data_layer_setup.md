@@ -58,7 +58,7 @@ harnessing the full power of SQLite. It's part of Android Jetpack.
     3. Create `@Dao` interfaces with your database operations.
     4. Create a class that extends `RoomDatabase` and is annotated with `@Database`.
 
-```kotlin
+```
 // Example Entity
 @Entity(tableName = "users")
 data class UserEntity(
@@ -101,7 +101,7 @@ two implementations:
     * Type safety with Proto DataStore.
 * **Usage (Preferences DataStore):**
 
-```kotlin
+```
 // 1. Create a DataStore instance
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -158,7 +158,7 @@ or XML (or other) web services.
     2. Define an interface for your API endpoints.
     3. Build a Retrofit instance.
 
-```kotlin
+```
 // Example API Interface
 interface ApiService {
     @GET("users/{userId}")
@@ -188,7 +188,7 @@ Ktor HTTP client is a good alternative to Retrofit, especially in Kotlin-first p
        `ktor-client-content-negotiation`, `ktor-serialization-kotlinx-json`).
     2. Create an `HttpClient` instance.
 
-```kotlin
+```
 // Example Ktor Client
 val client = HttpClient(CIO) { // CIO is one of the available engines
     install(ContentNegotiation) {
@@ -227,7 +227,7 @@ sources from the rest of the application.
     * Acts as a Single Source of Truth for a particular type of data.
 * **Example:**
 
-```kotlin
+```
 class UserRepository(
     private val remoteDataSource: UserRemoteDataSource, // e.g., using ApiService (Retrofit/Ktor)
     private val localDataSource: UserDao // e.g., Room DAO

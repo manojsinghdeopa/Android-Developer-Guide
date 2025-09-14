@@ -23,7 +23,7 @@ Unlike unit tests that run on your local JVM, instrumentation tests require a co
 ### a. Dependencies
 You'll need to add testing libraries to your `app/build.gradle` (or relevant module's `build.gradle`) file:
 
-```gradle
+```
 android {
     defaultConfig {
         // Specify AndroidJUnitRunner as the default test instrumentation runner
@@ -66,7 +66,7 @@ The `AndroidJUnitRunner` is the standard test runner for Android instrumentation
 ### a. Basic Test Structure
 A typical instrumentation test class looks like this:
 
-```kotlin
+```
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.espresso.Espresso.onView
@@ -125,7 +125,7 @@ Espresso is the primary framework for writing UI tests within your app. It focus
     Assert the state or properties of the Views.
 
 **Example Flow:**
-```kotlin
+```
 onView(ViewMatcher)       // 1. Find the view
     .perform(ViewAction)  // 2. Perform an action on it
     .check(ViewAssertion) // 3. Assert its state
@@ -133,7 +133,7 @@ onView(ViewMatcher)       // 1. Find the view
 
 **Common Espresso tasks:**
 - **Testing RecyclerViews:** Use `espresso-contrib` for `RecyclerViewActions` to scroll to positions or items.
-  ```kotlin
+  ```
   import androidx.test.espresso.contrib.RecyclerViewActions
 
   onView(withId(R.id.my_recycler_view))
@@ -152,7 +152,7 @@ UI Automator is useful when your test needs to interact with UI elements outside
 - **`UiObject2`**: Represents a UI element found by UI Automator.
 
 **Example (Pressing Home):**
-```kotlin
+```
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 
@@ -167,7 +167,7 @@ fun pressHomeButton() {
 ### d. Testing Android Components
 - **Activities:** `ActivityScenarioRule` (or `ActivityScenario.launch`) is the recommended way. It handles launching, resuming, and destroying activities, making tests more robust.
 - **Services:** Use `ServiceTestRule` to start and bind to services. You can then call methods on the bound service instance.
-  ```kotlin
+  ```
   import androidx.test.rule.ServiceTestRule
   // ... other imports
 
@@ -192,7 +192,7 @@ fun pressHomeButton() {
 If you use Jetpack Navigation, you can test navigation actions by performing clicks that trigger navigation and then verifying the current destination or UI state.
 Espresso-Intents can be used to verify if the correct `Intent` was fired for navigation to external activities.
 
-```kotlin
+```
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule // Or use Intents.init()/release()

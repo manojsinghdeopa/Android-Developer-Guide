@@ -6,52 +6,6 @@ ensuring the correctness, reliability, and maintainability of your app. This gui
 comprehensive overview of unit testing in Android, focusing on JUnit, Mockito, and Kotlinx
 Coroutines Test.
 
-## Table of Contents
-
-1. [Introduction to Unit Testing](#introduction-to-unit-testing)
-    * [Why Unit Test?](#why-unit-test)
-    * [What to Test?](#what-to-test)
-    * [Types of Tests in Android](#types-of-tests-in-android)
-2. [Setting up Your Environment](#setting-up-your-environment)
-    * [Configuring Gradle Dependencies](#configuring-gradle-dependencies)
-    * [Directory Structure](#directory-structure)
-3. [Writing Unit Tests with JUnit](#writing-unit-tests-with-junit)
-    * [Basic JUnit Test Structure](#basic-junit-test-structure)
-    * [Common JUnit Annotations](#common-junit-annotations)
-    * [Assertions](#assertions)
-    * [Example: Testing a Simple Utility Class](#example-testing-a-simple-utility-class)
-4. [Mocking Dependencies with Mockito](#mocking-dependencies-with-mockito)
-    * [Why Mocking?](#why-mocking)
-    * [Adding Mockito to Your Project](#adding-mockito-to-your-project)
-    * [Creating Mocks](#creating-mocks)
-    * [Stubbing Method Calls](#stubbing-method-calls)
-    * [Verifying Interactions](#verifying-interactions)
-    * [Argument Matchers](#argument-matchers)
-    * [Example: Testing a Class with Dependencies](#example-testing-a-class-with-dependencies)
-5. [Testing Kotlin Coroutines with Kotlinx Coroutines Test](#testing-kotlin-coroutines-with-kotlinx-coroutines-test)
-    * [Challenges in Testing Coroutines](#challenges-in-testing-coroutines)
-    * [Setting up Kotlinx Coroutines Test](#setting-up-kotlinx-coroutines-test)
-    * [Using `TestCoroutineDispatcher` and
-      `TestCoroutineScope`](#using-testcoroutinedispatcher-and-testcoroutinescope)
-    * [Controlling Virtual Time with
-      `runBlockingTest`](#controlling-virtual-time-with-runblockingtest)
-    * [Testing `Flow`](#testing-flow)
-    * [Example: Testing a ViewModel with Coroutines](#example-testing-a-viewmodel-with-coroutines)
-6. [Best Practices for Unit Testing](#best-practices-for-unit-testing)
-    * [Write Small, Focused Tests](#write-small-focused-tests)
-    * [Test One Thing at a Time](#test-one-thing-at-a-time)
-    * [Make Tests Independent and Repeatable](#make-tests-independent-and-repeatable)
-    * [Follow the Arrange-Act-Assert (AAA) Pattern](#follow-the-arrange-act-assert-aaa-pattern)
-    * [Name Tests Clearly and Descriptively](#name-tests-clearly-and-descriptively)
-    * [Keep Tests Fast](#keep-tests-fast)
-    * [Refactor Tests as You Refactor Code](#refactor-tests-as-you-refactor-code)
-    * [Aim for High Test Coverage (But Don't Obsess)](#aim-for-high-test-coverage-but-dont-obsess)
-7. [Running Unit Tests](#running-unit-tests)
-    * [From Android Studio](#from-android-studio)
-    * [Using Gradle](#using-gradle)
-8. [Conclusion](#conclusion)
-
----
 
 ## 1. Introduction to Unit Testing
 
@@ -94,7 +48,6 @@ Avoid testing:
 
 This guide focuses on **Local Unit Tests**.
 
----
 
 ## 2. Setting up Your Environment
 
@@ -103,7 +56,7 @@ This guide focuses on **Local Unit Tests**.
 You'll need to add dependencies for JUnit, Mockito, and Kotlinx Coroutines Test to your
 `build.gradle` file (usually the module-level `app/build.gradle.kts` or `app/build.gradle`).
 
-```kotlin
+```
 // app/build.gradle.kts
 
 dependencies {
@@ -151,7 +104,7 @@ JUnit is a widely-used testing framework for Java and Kotlin.
 
 A JUnit test class is typically a regular class with methods annotated with `@Test`.
 
-```kotlin
+```
 import org.junit.Test
 import org.junit.Assert.* // For assertions
 
@@ -201,7 +154,7 @@ Common assertions:
 
 Let's say you have a simple `StringHelper` class:
 
-```kotlin
+```
 // src/main/java/com/example/myapp/StringHelper.kt
 package com.example.myapp
 
@@ -221,7 +174,7 @@ class StringHelper {
 
 Here's how you might test it:
 
-```kotlin
+```
 // src/test/java/com/example/myapp/StringHelperTest.kt
 package com.example.myapp
 
@@ -313,7 +266,7 @@ section). Using `mockito-kotlin` is highly recommended for a better experience w
 
 You can create mocks using `Mockito.mock()` or the `mock()` function from `mockito-kotlin`.
 
-```kotlin
+```
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.mock // Preferred for Kotlin
 
@@ -348,7 +301,7 @@ should return or what exception it should throw when called with certain argumen
 The `when(...).thenReturn(...)` syntax from Mockito, or `whenever(...).thenReturn(...)` from
 `mockito-kotlin`, is commonly used.
 
-```kotlin
+```
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import org.junit.Test
@@ -415,7 +368,7 @@ or a specific number of times.
 
 Use `Mockito.verify()` or `verify()` from `mockito-kotlin`.
 
-```kotlin
+```
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
@@ -471,7 +424,7 @@ argument value or when it's hard to predict.
 Mockito provides matchers like `any()`, `anyString()`, `anyInt()`, `eq()`, `argThat()`.
 `mockito-kotlin` provides typed versions like `any<String>()`.
 
-```kotlin
+```
 import org.mockito.kotlin.*
 import org.junit.Test
 
@@ -508,7 +461,7 @@ class ArgumentMatcherTest {
 
 Consider a `AuthManager` that depends on a `CredentialsValidator` and `TokenGenerator`.
 
-```kotlin
+```
 // Dependencies
 interface CredentialsValidator {
     fun validate(username: String, pass: String): Boolean
@@ -630,7 +583,7 @@ The `kotlinx-coroutines-test` library provides:
 
 **For `kotlinx-coroutines-test` 1.6.0 and later (Recommended):**
 
-```kotlin
+```
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.* // Import TestScope, runTest, StandardTestDispatcher etc.
 import org.junit.Rule
@@ -743,7 +696,7 @@ immediately for testing purposes.
 
 `kotlinx-coroutines-test` also makes testing Kotlin `Flow` easier.
 
-```kotlin
+```
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
@@ -774,7 +727,7 @@ or use libraries like Turbine from CashApp.
 
 This builds upon the `MyCoroutineViewModel` example above, showcasing a more complete test.
 
-```kotlin
+```
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule // For LiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
@@ -888,20 +841,20 @@ class MyCoroutineViewModelAdvancedTest {
 You can run unit tests from the command line using Gradle wrapper:
 
 * Run all unit tests for all variants:
-  ```bash
+  ```
   ./gradlew test
   ```
 * Run unit tests for a specific build variant (e.g., debug):
-  ```bash
+  ```
   ./gradlew testDebugUnitTest 
   ```
   (The exact task name might vary based on your project structure and build types/flavors).
 * Run a specific test class:
-  ```bash
+  ```
   ./gradlew testDebugUnitTest --tests "com.example.myapp.MyClassTest"
   ```
 * Run a specific test method:
-  ```bash
+  ```
   ./gradlew testDebugUnitTest --tests "com.example.myapp.MyClassTest.mySpecificTestMethod"
   ```
 * HTML test reports are generated in `app/build/reports/tests/testDebugUnitTest/` (path may vary).

@@ -54,7 +54,7 @@ Unnecessary background processing is a major source of battery drain. Here's how
 
 **Example (Simple One-Time Work):**
 
-```kotlin
+```
 // Define a Worker
 class MyUploadWorker(appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
@@ -110,7 +110,7 @@ If you cannot use `WorkManager`, `JobScheduler` is the native Android system ser
 
 **Example:**
 
-```kotlin
+```
 // MyJobService.kt
 class MyJobService : JobService() {
     override fun onStartJob(params: JobParameters?): Boolean {

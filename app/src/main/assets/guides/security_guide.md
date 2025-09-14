@@ -23,14 +23,14 @@ For storing simple key-value pairs securely, `EncryptedSharedPreferences` provid
 **Setup:**
 
 1.  Add the security crypto library to your `build.gradle` file:
-    ```gradle
+    ```
     dependencies {
         implementation("androidx.security:security-crypto:1.0.0")
     }
     ```
 
 2.  Initialize `EncryptedSharedPreferences`:
-    ```kotlin
+    ```
     import androidx.security.crypto.EncryptedSharedPreferences
     import androidx.security.crypto.MasterKeys
 
@@ -77,7 +77,7 @@ When you need to store larger amounts of structured data in a local database sec
 **Setup with Room:**
 
 1.  Add SQLCipher and Room dependencies to your `build.gradle` file:
-    ```gradle
+    ```
     dependencies {
         implementation("androidx.room:room-runtime:2.6.1") // Use the latest Room version
         ksp("androidx.room:room-compiler:2.6.1") // Or annotationProcessor for Java
@@ -87,7 +87,7 @@ When you need to store larger amounts of structured data in a local database sec
     ```
 
 2.  Create a `SupportSQLiteOpenHelper.Factory` that uses SQLCipher:
-    ```kotlin
+    ```
     import androidx.sqlite.db.SupportSQLiteDatabase
     import androidx.sqlite.db.SupportSQLiteOpenHelper
     import net.sqlcipher.database.SQLiteDatabase
@@ -99,7 +99,7 @@ When you need to store larger amounts of structured data in a local database sec
     **Note:** The passphrase needs to be securely managed. Storing it directly in code is not recommended for production apps. Consider deriving it or fetching it from a secure location, potentially protected by the Android Keystore.
 
 3.  Configure Room to use this factory:
-    ```kotlin
+    ```
     import androidx.room.Room
 
     val db = Room.databaseBuilder(
@@ -127,14 +127,14 @@ For permissions that are classified as "dangerous" (e.g., accessing location, ca
 **Steps:**
 
 1.  **Declare Permissions in Manifest:**
-    ```xml
+    ```
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     ```
 
 2.  **Check for Existing Permissions:**
     Before performing an operation that requires a permission, check if your app already has it.
-    ```kotlin
+    ```
     import android.Manifest
     import android.content.pm.PackageManager
     import androidx.core.content.ContextCompat
@@ -149,7 +149,7 @@ For permissions that are classified as "dangerous" (e.g., accessing location, ca
 
 3.  **Request Permissions:**
     If the permission is not granted, request it from the user. Provide context or a rationale before making the request, especially if the permission isn't obvious for your app's functionality.
-    ```kotlin
+    ```
     import androidx.core.app.ActivityCompat
 
     private const val CAMERA_PERMISSION_REQUEST_CODE = 101
@@ -180,7 +180,7 @@ For permissions that are classified as "dangerous" (e.g., accessing location, ca
 
 4.  **Handle Permission Result:**
     Override `onRequestPermissionsResult` to handle the user's response.
-    ```kotlin
+    ```
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {

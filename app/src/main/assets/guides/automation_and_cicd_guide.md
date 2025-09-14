@@ -64,7 +64,7 @@ GitHub Actions is a CI/CD platform that allows you to automate your build, test,
 
 ### Basic Android Workflow Example (`.github/workflows/android_ci.yml`)
 
-```yaml
+```
 name: Android CI
 
 on:
@@ -148,7 +148,7 @@ Jenkins is a powerful, open-source automation server that provides hundreds of p
 
 ### Example `Jenkinsfile` (Declarative Pipeline)
 
-```groovy
+```
 pipeline {
     agent any // Or specify a label for a specific build agent
 
@@ -242,7 +242,7 @@ Bitrise is a cloud-based, mobile-first CI/CD platform. It's designed specificall
 
 ### Example `bitrise.yml` Snippet
 
-```yaml
+```
 ---
 format_version: '11'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
@@ -293,15 +293,15 @@ workflows:
 
 ## 6. Choosing the Right Tool
 
-| Feature             | GitHub Actions                      | Jenkins                             | Bitrise                             |
-|---------------------|-------------------------------------|-------------------------------------|-------------------------------------|
-| **Hosting**         | Cloud (GitHub-hosted), Self-hosted | Self-hosted                         | Cloud                               |
-| **Ease of Use**     | Moderate                            | Low (Steep learning curve)          | High (Very intuitive)             |
-| **Setup Time**      | Fast (if on GitHub)                 | Slow (Requires server setup)        | Very Fast                           |
-| **Flexibility**     | High                                | Very High                           | Moderate (Mobile-focused)         |
-| **Cost**            | Free tier, Paid for private repos/usage | Open Source (Server costs apply)    | Free tier, Paid plans             |
-| **Mobile Focus**    | General                             | General (Plugins available)         | Strong                              |
-| **Primary Audience**| GitHub users, Open Source projects  | Enterprises, Complex needs          | Mobile development teams            |
+| Feature              | GitHub Actions                          | Jenkins                          | Bitrise                   |
+|----------------------|-----------------------------------------|----------------------------------|---------------------------|
+| **Hosting**          | Cloud (GitHub-hosted), Self-hosted      | Self-hosted                      | Cloud                     |
+| **Ease of Use**      | Moderate                                | Low (Steep learning curve)       | High (Very intuitive)     |
+| **Setup Time**       | Fast (if on GitHub)                     | Slow (Requires server setup)     | Very Fast                 |
+| **Flexibility**      | High                                    | Very High                        | Moderate (Mobile-focused) |
+| **Cost**             | Free tier, Paid for private repos/usage | Open Source (Server costs apply) | Free tier, Paid plans     |
+| **Mobile Focus**     | General                                 | General (Plugins available)      | Strong                    |
+| **Primary Audience** | GitHub users, Open Source projects      | Enterprises, Complex needs       | Mobile development teams  |
 
 **Consider these factors:**
 *   **Team Expertise:** Does your team have experience managing servers (for Jenkins)?

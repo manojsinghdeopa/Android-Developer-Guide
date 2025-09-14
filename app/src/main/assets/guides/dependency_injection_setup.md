@@ -15,7 +15,7 @@ an external source.
 
 **Example without DI:**
 
-```kotlin
+```
 class Car {
     private val engine = Engine() // Car creates its own Engine dependency
 
@@ -27,7 +27,7 @@ class Car {
 
 **Example with Manual DI (Constructor Injection):**
 
-```kotlin
+```
 class Car(private val engine: Engine) { // Engine is passed in (injected)
     fun start() {
         engine.start()
@@ -97,7 +97,7 @@ graphs.
 ### Basic Dagger 2 Setup:
 
 1. **Add Dependencies:**
-   ```gradle
+   ```
    // In build.gradle (Module)
    dependencies {
        implementation 'com.google.dagger:dagger:2.x'
@@ -105,7 +105,7 @@ graphs.
    }
    ```
 2. **Create a Module:**
-   ```kotlin
+   ```
    @Module
    class AppModule(private val applicationContext: Context) {
        @Provides
@@ -120,7 +120,7 @@ graphs.
    }
    ```
 3. **Create a Component:**
-   ```kotlin
+   ```
    @Singleton
    @Component(modules = [AppModule::class])
    interface AppComponent {
@@ -133,7 +133,7 @@ graphs.
    }
    ```
 4. **Initialize the Component:** Typically in your `Application` class.
-   ```kotlin
+   ```
    class MyApplication : Application() {
        lateinit var appComponent: AppComponent
 
@@ -146,7 +146,7 @@ graphs.
    }
    ```
 5. **Inject Dependencies:**
-   ```kotlin
+   ```
    class MainActivity : AppCompatActivity() {
        @Inject lateinit var sharedPreferences: SharedPreferences
 
@@ -218,7 +218,7 @@ reducing boilerplate.
   instances.
 * **`@Binds`**: Used within Hilt modules to tell Hilt which implementation to use for an interface.
   More efficient than `@Provides` for this purpose as it doesn't generate a factory method.
-  ```kotlin
+  ```
   @Module
   @InstallIn(SingletonComponent::class)
   abstract class AnalyticsModule {
@@ -239,7 +239,7 @@ reducing boilerplate.
 ### Basic Hilt Setup:
 
 1. **Add Dependencies:**
-   ```gradle
+   ```
    // In build.gradle (Project)
    plugins {
        id 'com.google.dagger.hilt.android' version '2.x' apply false // Hilt Gradle plugin
@@ -274,7 +274,7 @@ reducing boilerplate.
    }
    ```
 2. **Annotate Application Class:**
-   ```kotlin
+   ```
    @HiltAndroidApp
    class MyApplication : Application() {
        // No need to create component manually
@@ -282,7 +282,7 @@ reducing boilerplate.
    ```
    And register it in `AndroidManifest.xml`: `<application android:name=".MyApplication" ...>`
 3. **Create a Module (Example):**
-   ```kotlin
+   ```
    @Module
    @InstallIn(SingletonComponent::class) // Scoped to application lifecycle
    object NetworkModule {
@@ -302,7 +302,7 @@ reducing boilerplate.
    }
    ```
 4. **Inject into Android Classes:**
-   ```kotlin
+   ```
    @AndroidEntryPoint // Mark Activity for injection
    class MainActivity : AppCompatActivity() {
 
@@ -317,7 +317,7 @@ reducing boilerplate.
    }
    ```
 5. **Inject ViewModels:**
-   ```kotlin
+   ```
    @HiltViewModel
    class MyViewModel @Inject constructor(
        private val userRepository: UserRepository
@@ -377,12 +377,12 @@ Both Hilt and Dagger provide excellent support for testing.
 Hilt offers dedicated testing APIs that simplify replacing dependencies in tests.
 
 1. **Add Testing Dependencies:**
-   ```gradle
+   ```
    androidTestImplementation "com.google.dagger:hilt-android-testing:2.x"
    kaptAndroidTest "com.google.dagger:hilt-compiler:2.x"
    ```
 2. **Custom Test Runner:**
-   ```kotlin
+   ```
    // src/androidTest/java/com/example/MyCustomTestRunner.kt
    class MyCustomTestRunner : AndroidJUnitRunner() {
        override fun newApplication(cl: ClassLoader?, name: String?, context: Context?): Application {
@@ -398,7 +398,7 @@ Hilt offers dedicated testing APIs that simplify replacing dependencies in tests
       `androidTest` source set.
     * **`@BindValue`**: Easily replace a field in your test with a mock or fake.
 
-```kotlin
+```
 @HiltAndroidTest
 class MyActivityTest {
 
